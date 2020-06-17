@@ -1,0 +1,75 @@
+1) DHT ():
+- Return Type: Constructor.
+-Parameters: Data Pin (int).
+-Notes: The default pin is pin 0,the constructor gives the DHT object constructed a unique  ID.
+2) Read_data ():
+- Return Type: void.
+-Parameters: void.
+-Notes: Should be called before using any “get_data” function.
+3) get_id ():
+- Return Type: int.
+-Parameters: void.
+-Notes: returns the ID of current DHT object (Sensor).
+4) set_temperature ():
+- Return Type: void.
+-Parameters: int.
+-Notes: -
+
+
+5) set_RH ():
+- Return Type: void.
+-Parameters: int.
+-Notes-
+6) set_data_pin ():
+- Return Type: void.
+-Parameters: int.
+-Notes: sets the data pin of current DHT object (Sensor).
+7) get_data_pin ():
+- Return Type: int.
+-Parameters: void.
+-Notes: returns the data pin of current DHT object (Sensor).
+8) get_temperature ():
+- Return Type: float.
+-Parameters: void.
+-Notes: Should call “Read_data ()” before calling it.
+9) get_RH ():
+- Return Type: float.
+-Parameters: void.
+-Notes: Should call “Read_data ()” before calling it.
+ 
+
+10) temperature_cmp ():
+- Return Type: int.
+-Parameters: (DHT object) and error percentage (int).
+-Notes: Compares the temperature of the 2-DHTs relative to their   			    average readings with a given error percentage (default is 10%).
+11) RH_cmp ():
+- Return Type: int.
+-Parameters: (DHT object) and error percentage (int).
+-Notes: Compares the RH of the 2-DHTs relative to their   			    average readings with a given error percentage (default is 10%).
+12) operator == ():
+- Return Type: int.
+-Parameters: (DHT object).
+-Notes: Checks whether the 2-DHTs read the same data values or not 	  	   with an error percentage 10%.
+13) operator != ():
+- Return Type: int.
+-Parameters: (DHT object).
+-Notes: Checks whether the 2-DHTs read the same data values or not 	  	   with an error percentage 10%.
+
+
+14) operator = ():
+- Return Type: DHT.
+-Parameters: (DHT object).
+-Notes: Sets the temperature and RH values of the RHS to the LHS.
+15) operator + ():
+- Return Type: DHT.
+-Parameters: (DHT object).
+-Notes: returns a new DHT which has the average values of temperature 		   and RH of the 2-passed DHTs.
+16) Serial_print_data():
+- Return Type: Void.
+-Parameters: A (bool) is passed, if true then read data before printing 			    else, print the last data read.
+-Notes: The initial value of the bool is true.
+17) Serial_print_data_LabView():
+- Return Type: Void.
+-Parameters: A (bool) is passed, if true then read data before printing 			   else, print the last data read.
+-Notes: Prints the data in the form the lab view accepts , the initial 		    value of the bool is true.
+
