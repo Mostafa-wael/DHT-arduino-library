@@ -10,7 +10,4 @@ void loop()
   Pdht->Serial_print_data();
 
 }
-void serialEvent()
-{
-  Pdht->Serial_print_data();
-}
+
