@@ -30,7 +30,7 @@ void DHT::initialize ()
 
  pinMode (data_pin,OUTPUT);         //1) apply a high voltage to the sensor and give the sensor a chance to feel the high volt
    digitalWrite(data_pin,HIGH);
-   delay(1000);
+   delay(150);
  digitalWrite(data_pin,LOW);        //2) Send a starting signal by pulling the signal from high to low "from datasheet it takes 18 ms to make DHT feel it"
    delay(18);
  digitalWrite(data_pin,HIGH);       //3) Then MCU will pull up voltage and wait 20-40us for DHT’s response.
@@ -58,18 +58,19 @@ void DHT::Read_data ()
 	/*-------------------------------------------*/
     // 1) Save Data from DHT in array "Pulse[]"
 
-   for(int i=0;i<80;i++){ Pulse[i]=expectPulse(i%2); } // every bit has two sections, and we have 40 bit so we have 80 sections
+   for(int i=0;i<64;i++){ Pulse[i]=expectPulse(i%2); } // every bit has two sections, and we have 40 bit so we have 80 sections
 
    // 2) Determination of 1s and 0s & storing the data
 
-  for (int i=0; i<40; i++)
+  for (int i=0; i<32; i++)
   {
-	 unsigned char lowCycles  = Pulse[2*i]; unsigned char highCycles = Pulse[2*i+1];
+	 unsigned char lowCycles  = Pulse[2*i];
+	 unsigned char highCycles = Pulse[2*i+1];
 
     if (i<8)
     {
                                     RH_int <<= 1;         //Shifting RH_int to store the next 0 or 1
-       if (highCycles > lowCycles)  RH_int=RH_int |1;    // High cycles are greater than 50us low cycle count, must be a 1. put 1 in RH_int
+       if (highCycles > lowCycles)  RH_int|=1;    // High cycles are greater than 50us low cycle count, must be a 1. put 1 in RH_int
 
     }
     else if (i<16 )
@@ -80,12 +81,12 @@ void DHT::Read_data ()
      else if (i<24)
     {
                                    temperature_int<<=1;
-      if(highCycles > lowCycles)   temperature_int=temperature_int |1;
+      if(highCycles > lowCycles)   temperature_int|=1;
 
     }
     else if (i<32 )
     {                             temperature_dec<<=1;
-       if(highCycles > lowCycles) temperature_dec=temperature_dec |1;
+       if(highCycles > lowCycles) temperature_dec|=1;
     }
 
   }
@@ -151,16 +152,16 @@ bool DHT::Serial_print_data (bool Read_Data=1)
 
   Serial.print("DHT: ");
   Serial.write("RH = "); Serial.print(RH_int); Serial.print("."); Serial.print(RH_dec);
-  Serial.write(" Temperature  = ");Serial.print(temperature_int); Serial.print(".");Serial.print(temperature_dec);
+  Serial.write("  Temperature  = ");Serial.print(temperature_int); Serial.print(".");Serial.print(temperature_dec);
   Serial.println ("  ");
-    return true;
+   
   /*
   Serial.print("DHT: ");
-  Serial.write(" RH = "); Serial.print(RH);
+  Serial.write("RH = "); Serial.print(RH);
   Serial.write(" Temperature  = ");Serial.print(temperature); Serial.print(" C");
   Serial.println ("  ");
   */
-
+ return true;
 }
 
 bool DHT::Serial_print_data_LabView (bool Read_Data=1)

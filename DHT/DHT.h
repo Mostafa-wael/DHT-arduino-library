@@ -10,7 +10,7 @@ class DHT  // for temperature and relative humedity "RH"
 		   float temperature;
 		   float RH;
 		   ///////////////////////////////////////////////////////////////////
-		   unsigned char Pulse[80];
+		   unsigned char Pulse[64];
            unsigned char temperature_int, RH_int,temperature_dec, RH_dec;
            unsigned char expectPulse(bool level);
 		   ///////////////////////////////////////////////////////////////////
