@@ -5,7 +5,7 @@
 2) Read_data ():
 - Return Type: void.
 -Parameters: void.
--Notes: Should be called before using any “get_data” function.
+-Notes: Should be called before using any â€œget_dataâ€ function.
 3) get_id ():
 - Return Type: int.
 -Parameters: void.
@@ -31,11 +31,11 @@
 8) get_temperature ():
 - Return Type: float.
 -Parameters: void.
--Notes: Should call “Read_data ()” before calling it.
+-Notes: Should call â€œRead_data ()â€ before calling it.
 9) get_RH ():
 - Return Type: float.
 -Parameters: void.
--Notes: Should call “Read_data ()” before calling it.
+-Notes: Should call â€œRead_data ()â€ before calling it.
  
 
 10) temperature_cmp ():
